@@ -13,6 +13,8 @@ function App() {
       <header>
         <Link to="/">#AlbumLife</Link>
         <nav>
+          <Link to="/todos">todos</Link>
+          <Link to="/posts">posts</Link>
           <Link to="/albums">albums</Link>
           <Link to="/info">info</Link>
         </nav>
