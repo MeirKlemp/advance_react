@@ -1,9 +1,10 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import Home from "./pages/home";
+
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello, world!</h1>
-    </div>
-  );
+  return <Home></Home>;
 }
 
 export default App;
+// structure
