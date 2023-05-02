@@ -6,8 +6,8 @@ export default function useApi(resource) {
   useEffect(() => {
     if (resource) {
       fetch("https://jsonplaceholder.typicode.com/" + resource)
-        .then(response => response.json())
-        .then(json => setData(json));
+        .then((response) => response.json())
+        .then((json) => setData(json));
     }
   }, [resource]);
 

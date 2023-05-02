@@ -6,6 +6,7 @@ import Info from "./pages/info";
 import Login from "./pages/login";
 import Posts from "./pages/posts";
 import Todos from "./pages/todos";
+import PostDetail from "./pages/postDetail";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/info" element={<Info />} />
         <Route path="/login" element={<Login />} />
         <Route path="/posts" element={<Posts />} />
+        <Route path="/posts/:id" element={<PostDetail />} />
         <Route path="/todos" element={<Todos />} />
       </Routes>
     </BrowserRouter>
