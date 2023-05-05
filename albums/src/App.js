@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Albums from "./pages/albums";
 import Home from "./pages/home";
 import Info from "./pages/info";
@@ -7,7 +7,7 @@ import Login from "./pages/login";
 import Posts from "./pages/posts";
 import Todos from "./pages/todos";
 import PostDetail from "./pages/postDetail";
-import Layout from "./components/Layout"
+import Layout from "./components/Layout";
 
 function App() {
   return (
