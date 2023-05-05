@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useApi from "../api";
+import useApi from "../components/api";
 
 export default function Albums() {
   const albums = useApi("albums");
