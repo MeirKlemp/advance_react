@@ -7,27 +7,21 @@ import Login from "./pages/login";
 import Posts from "./pages/posts";
 import Todos from "./pages/todos";
 import PostDetail from "./pages/postDetail";
+import Layout from "./components/Layout"
 
 function App() {
   return (
     <BrowserRouter>
-      <header>
-        <Link to="/">#AlbumLife</Link>
-        <nav>
-          <Link to="/todos">todos</Link>
-          <Link to="/posts">posts</Link>
-          <Link to="/albums">albums</Link>
-          <Link to="/info">info</Link>
-        </nav>
-      </header>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/albums" element={<Albums />} />
-        <Route path="/info" element={<Info />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/posts" element={<Posts />} />
-        <Route path="/posts/:id" element={<PostDetail />} />
-        <Route path="/todos" element={<Todos />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/albums" element={<Albums />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/todos" element={<Todos />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
