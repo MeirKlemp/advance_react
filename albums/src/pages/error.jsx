@@ -1,15 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../App";
 
-export default function Info() {
+export default function Error() {
   const { user } = useContext(UserContext);
-
   return (
     <div>
-      <h1>Info</h1>
-      <h2>{`hello ${user.name} welcome!`}</h2>
+      <h1>Error</h1>
     </div>
   );
 }

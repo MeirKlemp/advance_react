@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 const Login = ({ setUser }) => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !email) return;
-    setUser({ name: name, email: email });
-    navigate("/dashboard");
+    if (!name || !password) return;
+    setUser({ name: name, password: password });
+    navigate("/");
   };
 
   return (
@@ -31,15 +31,15 @@ const Login = ({ setUser }) => {
           />
         </div>
         <div className="form-row">
-          <label htmlFor="email" className="form-label">
-            email
+          <label htmlFor="password" className="form-label">
+            password
           </label>
           <input
-            type="email"
+            type="password"
             className="form-input"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button type="submit" className="btn btn-block">
