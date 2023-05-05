@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Albums from "./pages/albums";
 import Home from "./pages/home";
@@ -8,6 +8,10 @@ import Posts from "./pages/posts";
 import Todos from "./pages/todos";
 import PostDetail from "./pages/postDetail";
 import Layout from "./components/Layout";
+
+// useState
+
+// isUserAuthenticated
 
 function App() {
   return (
@@ -20,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/logout" />
           <Route path="/todos" element={<Todos />} />
         </Route>
       </Routes>

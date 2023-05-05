@@ -1,15 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
+  const setActiveStyle = ({ isActive }) => (isActive ? "activeStyle" : null);
   return (
     <header>
-      <Link to="/">#AlbumLife</Link>
+      <NavLink className={setActiveStyle} to="/">
+        #AlbumLife
+      </NavLink>
       <nav>
-        <Link to="/todos">todos</Link>
-        <Link to="/posts">posts</Link>
-        <Link to="/albums">albums</Link>
-        <Link to="/info">info</Link>
+        <NavLink className={setActiveStyle} to="/todos">
+          todos
+        </NavLink>
+        <NavLink className={setActiveStyle} to="/posts">
+          posts
+        </NavLink>
+        <NavLink className={setActiveStyle} to="/albums">
+          albums
+        </NavLink>
+        <NavLink className={setActiveStyle} to="/info">
+          info
+        </NavLink>
+        <NavLink className={setActiveStyle} to="/logout">
+          logout
+        </NavLink>
       </nav>
     </header>
   );
