@@ -32,12 +32,40 @@ function App() {
                 </Protected>
               }
             />
-            <Route path="/info" element={<Info />} />
-            <Route path="/posts" element={<Posts />} />
-            <Route path="/posts/:id" element={<PostDetail />} />
+            <Route
+              path="/info"
+              element={
+                <Protected>
+                  <Info />
+                </Protected>
+              }
+            />
+            <Route
+              path="/posts"
+              element={
+                <Protected>
+                  <Posts />
+                </Protected>
+              }
+            />
+            <Route
+              path="/posts/:id"
+              element={
+                <Protected>
+                  <PostDetail />
+                </Protected>
+              }
+            />
             <Route path="/logout" />
             <Route path="*" element={<Error />} />
-            <Route path="/todos" element={<Todos />} />
+            <Route
+              path="/todos"
+              element={
+                <Protected>
+                  <Todos />
+                </Protected>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>

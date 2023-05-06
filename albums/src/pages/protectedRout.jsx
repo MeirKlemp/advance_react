@@ -5,7 +5,7 @@ import { UserContext } from "../App";
 const Protected = () => {
   const { user } = useContext(UserContext);
   if (!user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/error" replace />;
   }
   return <Outlet />;
 };
