@@ -21,9 +21,9 @@ function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<Login setUser={setUser} />} />
           <Route element={<Layout />}>
             <Route path="/" element={!user && <Navigate to="/login" />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
             <Route
               path="/albums"
               element={
