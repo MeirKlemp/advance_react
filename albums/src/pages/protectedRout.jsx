@@ -8,7 +8,6 @@ const Protected = ({ children }) => {
   if (!user) {
     return <Navigate to="/error" replace />;
   }
-  console.log(children);
   return children;
 };
 export default Protected;

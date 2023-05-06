@@ -1,16 +1,41 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useApi from "../components/api";
 
-const Login = ({ setUser }) => {
+function Login({ setUser }) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const allUsers = useApi("users");
+
+  function IsAuth(name, password) {
+    const user = allUsers.find((user) => user.name === name);
+    if (user) {
+      console.log(`user: ${user.address.geo.lat.substring(4)}`);
+      if (user.address.geo.lat.substring(4) === password) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function getId(name) {
+    const user = allUsers.find((user) => user.name === name);
+    if (user) {
+      return user.id;
+    }
+    return null;
+  }
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !password) return;
-    setUser({ name: name, password: password });
+    if (!IsAuth(name, password)) {
+      alert("Wrong name or password");
+      return;
+    }
+    setUser({ name: name, password: password, id: getId(name) });
     navigate("/");
   };
 
@@ -48,5 +73,5 @@ const Login = ({ setUser }) => {
       </form>
     </section>
   );
-};
+}
 export default Login;

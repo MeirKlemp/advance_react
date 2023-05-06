@@ -15,7 +15,6 @@ export const UserContext = createContext();
 
 function App() {
   const [user, setUser] = useState(NaN);
-  console.log(user);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

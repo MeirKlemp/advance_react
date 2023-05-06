@@ -9,7 +9,7 @@ export default function Info() {
   return (
     <div>
       <h1>Info</h1>
-      <h2>{`hello ${user.name} welcome!`}</h2>
+      <h2>{`hello ${user.name} welcome! your id is ${user.id}`}</h2>
     </div>
   );
 }
