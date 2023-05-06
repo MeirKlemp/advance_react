@@ -9,6 +9,7 @@ import Todos from "./pages/todos";
 import Error from "./pages/error";
 import PostDetail from "./pages/postDetail";
 import Layout from "./components/Layout";
+import Protected from "./pages/protectedRout";
 
 export const UserContext = createContext();
 
@@ -23,7 +24,14 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={!user && <Navigate to="/login" />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/albums" element={<Albums />} />
+            <Route
+              path="/albums"
+              element={
+                <Protected>
+                  <Albums />
+                </Protected>
+              }
+            />
             <Route path="/info" element={<Info />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/posts/:id" element={<PostDetail />} />
