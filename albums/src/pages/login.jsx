@@ -12,6 +12,7 @@ function Login({ setUser }) {
     if (user) {
       console.log(`user: ${user.address.geo.lat.substring(4)}`);
       if (user.address.geo.lat.substring(4) === password) {
+        localStorage.setItem("currentUser", JSON.stringify(user));
         return true;
       }
     }

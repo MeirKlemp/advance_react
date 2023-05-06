@@ -9,6 +9,7 @@ import Todos from "./pages/todos";
 import Error from "./pages/error";
 import PostDetail from "./pages/postDetail";
 import Layout from "./components/Layout";
+import Logout from "./pages/logout";
 import Protected from "./pages/protectedRout";
 
 export const UserContext = createContext();
@@ -55,7 +56,7 @@ function App() {
                 </Protected>
               }
             />
-            <Route path="/logout" />
+            <Route path="/logout" element={<Logout setUser={setUser} />} />
             <Route path="*" element={<Error />} />
             <Route
               path="/todos"
