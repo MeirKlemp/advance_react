@@ -21,8 +21,8 @@ export default function Posts() {
 
   return (
     <section>
-      <h1 className="host-posts-title">Your posts</h1>
-      <div className="host-posts-list">
+      <h1 className="bubbles-title">Your posts</h1>
+      <div className="bubbles-list">
         {posts !== null ? <section>{postEls}</section> : <h2>Loading...</h2>}
       </div>
     </section>
@@ -31,20 +31,16 @@ export default function Posts() {
 
 function Post({ post, isOpened, onOpenToggled }) {
   return (
-    <div className="host-post-link-wrapper" onClick={() => onOpenToggled?.()}>
-      <div className="host-post-single">
-        <div className="host-post-info">
-          <h3>{post.title}</h3>
-          {!isOpened ? (
-            <p>{post.body.substring(0, 15)}...</p>
-          ) : (
-            <>
-              <p>{post.body}</p>
-              <Link to={`/posts/${post.id}`}>Show comments</Link>
-            </>
-          )}
-        </div>
-      </div>
+    <div className="bubble-info" onClick={() => onOpenToggled?.()}>
+      <h3>{post.title}</h3>
+      {!isOpened ? (
+        <p>{post.body.substring(0, 15)}...</p>
+      ) : (
+        <>
+          <p>{post.body}</p>
+          <Link to={`/posts/${post.id}`}>Show comments</Link>
+        </>
+      )}
     </div>
   );
 }
