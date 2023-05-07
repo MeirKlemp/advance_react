@@ -32,7 +32,7 @@ export default function Todos() {
         <select value={order} onChange={(e) => setOrder(e.target.value)}>
           {Orders.map((o, i) => (
             <option key={i} value={i}>
-              {Orders[i].title}
+              {o.title}
             </option>
           ))}
         </select>

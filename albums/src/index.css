@@ -10,7 +10,6 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -67,11 +66,9 @@ header a:hover {
   transform: translate(1px, 1px);
 }
 
-
-
 footer {
   background-color: #161616;
-  color: #AAAAAA;
+  color: #aaaaaa;
   height: 74px;
   display: flex;
   flex-shrink: 0;
@@ -82,12 +79,12 @@ footer {
 }
 
 /* posts component */
-.host-van-link-wrapper {
+.host-post-link-wrapper {
   color: unset;
   text-decoration: unset;
 }
 
-.host-van-single {
+.host-post-single {
   display: flex;
   align-items: center;
   background-color: white;
@@ -95,19 +92,19 @@ footer {
   padding-block: 18px;
   padding-left: 24px;
 }
-.host-van-info h3 {
+.host-post-info h3 {
   font-size: 20px;
   font-weight: 600;
   margin-block: 10px;
 }
 
-.host-van-info p {
+.host-post-info p {
   margin-block: 10px;
 }
 
-.host-vans-title {
+.host-posts-title {
   padding-inline: 26px;
 }
-.host-vans-list {
+.host-posts-list {
   padding-inline: 26px;
 }
