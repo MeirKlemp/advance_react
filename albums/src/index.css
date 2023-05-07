@@ -80,3 +80,34 @@ footer {
   margin-top: auto;
   font-weight: 500;
 }
+
+/* posts component */
+.host-van-link-wrapper {
+  color: unset;
+  text-decoration: unset;
+}
+
+.host-van-single {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 15px;
+  padding-block: 18px;
+  padding-left: 24px;
+}
+.host-van-info h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-block: 10px;
+}
+
+.host-van-info p {
+  margin-block: 10px;
+}
+
+.host-vans-title {
+  padding-inline: 26px;
+}
+.host-vans-list {
+  padding-inline: 26px;
+}
