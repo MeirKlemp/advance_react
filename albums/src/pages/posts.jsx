@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import useApi from "../api";
+import { useResource } from "../api";
 
 export default function Posts() {
-  const posts = useApi("posts");
+  const [posts, setPosts] = useResource("posts");
   return (
     <div>
       <h1>Posts</h1>

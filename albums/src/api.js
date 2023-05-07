@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useApi(resource) {
+export function useResource(resource) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -11,5 +11,20 @@ export default function useApi(resource) {
     }
   }, [resource]);
 
-  return data;
+  return [data, setData];
+}
+
+export async function updateResource(resource, updatedObj) {
+  const response = await fetch(
+    "https://jsonplaceholder.typicode.com/" + resource,
+    {
+      method: "PUT",
+      body: JSON.stringify(updatedObj),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+  );
+
+  return await response.json();
 }

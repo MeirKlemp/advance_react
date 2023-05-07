@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useApi from "../api";
+import { useResource } from "../api";
 
 function Login({ setUser }) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const allUsers = useApi("users");
+  const [allUsers, setAllUsers] = useResource("users");
 
   function IsAuth(name, password) {
     const user = allUsers.find((user) => user.name === name);

@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import useApi from "../api";
-
-// TODO: Get loggedin user id.
-const userId = "1";
+import { useResource, updateResource } from "../api";
+import { UserContext } from "../App";
 
 export default function Todos() {
-  const [todos, setTodos] = useState(null);
+  const { user } = useContext(UserContext);
+  const [todos, setTodos] = useResource("todos?userId=" + user.id);
   const [order, setOrder] = useState(0);
   const [orderedTodos, setOrderedTodos] = useState(null);
-  // TODO: Move this into api.js
-  useEffect(() => {
-    if (userId) {
-      fetch("https://jsonplaceholder.typicode.com/todos?userId=" + userId)
-        .then((response) => response.json())
-        .then((json) => setTodos(json));
-    }
-  }, [userId]);
 
   const handleTodoChange = (todo) => {
-    fetch("https://jsonplaceholder.typicode.com/todos/" + todo.id, {
-      method: "PUT",
-      body: JSON.stringify(todo),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    updateResource("todos/" + todo.id, todo);
 
     // Replace the old todo with the changed todo.
     const updatedTodos = todos.reduce((arr, t, i) => {

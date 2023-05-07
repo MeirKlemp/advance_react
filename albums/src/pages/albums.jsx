@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useApi from "../api";
+import { useResource } from "../api";
 
 export default function Albums() {
-  const albums = useApi("albums");
+  const [albums, setAlbums] = useResource("albums");
   return (
     <div>
       <h1>Albums</h1>
