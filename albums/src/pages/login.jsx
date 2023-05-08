@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useResource } from "../api";
 
 function Login({ setUser }) {
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [allUsers, setAllUsers] = useResource("users");
+  const navigate = useNavigate();
 
-  function IsAuth(name, password) {
-    const user = allUsers.find((user) => user.name === name);
+  function IsAuth(userName, password) {
+    const user = allUsers.find((user) => user.username === userName);
+    console.log(`user: ${JSON.stringify(user)}`);
     if (user) {
       console.log(`user: ${user.address.geo.lat.substring(4)}`);
       if (user.address.geo.lat.substring(4) === password) {
@@ -19,24 +21,16 @@ function Login({ setUser }) {
     return false;
   }
 
-  function getId(name) {
-    const user = allUsers.find((user) => user.name === name);
-    if (user) {
-      return user.id;
-    }
-    return null;
-  }
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !password) return;
-    if (!IsAuth(name, password)) {
-      alert("Wrong name or password");
+    if (!userName || !password) return;
+    if (!IsAuth(userName, password)) {
+      alert("Wrong userName or password");
       return;
     }
-    setUser({ name: name, password: password, id: getId(name) });
+    const user = allUsers.find((user) => user.username === userName);
+    setUser({ userName: userName, password: password, id: user.id, name: user.name  });
     navigate("/");
   };
 
@@ -46,14 +40,14 @@ function Login({ setUser }) {
         <h5>login</h5>
         <div className="form-row">
           <label htmlFor="name" className="form-label">
-            name
+            userName
           </label>
           <input
             type="text"
             className="form-input"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
         </div>
         <div className="form-row">
