@@ -7,7 +7,12 @@ export default function Todos() {
   const { user } = useContext(UserContext);
   const [todos, setTodos] = useResource("todos?userId=" + user.id);
   const [order, setOrder] = useState(0);
-  const [orderedTodos, setOrderedTodos] = useState(null);
+
+  const handleOrderChange = (e) => {
+    const order = e.target.value;
+    setOrder(order);
+    setTodos((todos) => todos?.toSorted(Orders[order].compare));
+  };
 
   const handleTodoChange = (todo) => {
     updateResource("todos/" + todo.id, todo);
@@ -20,31 +25,29 @@ export default function Todos() {
     setTodos(updatedTodos);
   };
 
-  useEffect(() => {
-    setOrderedTodos(todos?.toSorted(Orders[order].compare));
-  }, [todos, order]);
+  const orderEls = Orders.map((o, i) => (
+    <option key={i} value={i}>
+      {o.title}
+    </option>
+  ));
+
+  const todoEls = todos?.map((todo) => (
+    <React.Fragment key={todo.id}>
+      <Todo todo={todo} onChange={handleTodoChange} />
+      <br />
+    </React.Fragment>
+  ));
 
   return (
     <div>
       <h1>Todos</h1>
       <div>
-        <span>Order:</span>
-        <select value={order} onChange={(e) => setOrder(e.target.value)}>
-          {Orders.map((o, i) => (
-            <option key={i} value={i}>
-              {o.title}
-            </option>
-          ))}
+        <span>Order: </span>
+        <select value={order} onChange={handleOrderChange}>
+          {orderEls}
         </select>
       </div>
-      <div>
-        {orderedTodos?.map((todo) => (
-          <React.Fragment key={todo.id}>
-            <Todo todo={todo} onChange={handleTodoChange} />
-            <br />
-          </React.Fragment>
-        ))}
-      </div>
+      <div>{todoEls}</div>
     </div>
   );
 }
@@ -65,7 +68,7 @@ function Todo({ todo, onChange }) {
 const Orders = [
   {
     title: "Default",
-    compare: (a, b) => 0,
+    compare: (a, b) => a.id - b.id,
   },
   {
     title: "Completed",
