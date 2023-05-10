@@ -4,6 +4,7 @@ import { useResource } from "../api";
 import { UserContext } from "../App";
 
 export default function Albums() {
+
   const { user } = useContext(UserContext);
   const [albums, setAlbums] = useResource("albums?userId=" + user.id);
   const [openedAlbum, setOpenedAlbum] = useState(NaN);
@@ -29,8 +30,4 @@ function Album(album) {
       <Link to={`/albums/${album.album.id}`}>Show photos</Link>
     </div>
   );
-}
-
-{
-  /* <Link to={`/albums/${album.id}`}>Show comments</Link> */
 }
