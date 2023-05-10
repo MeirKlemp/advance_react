@@ -5,32 +5,36 @@ import { useResource } from "../api";
 function Login({ setUser }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [allUsers, setAllUsers] = useResource("users");
+  const [allUsers] = useResource("users");
   const navigate = useNavigate();
 
-  function IsAuth(userName, password) {
+  function isAuth(userName, password) {
     const user = allUsers.find((user) => user.username === userName);
     console.log(`user: ${JSON.stringify(user)}`);
     if (user) {
       console.log(`user: ${user.address.geo.lat.substring(4)}`);
       if (user.address.geo.lat.substring(4) === password) {
         localStorage.setItem("currentUser", JSON.stringify(user));
-        return true;
+        return user;
       }
     }
     return false;
   }
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!userName || !password) return;
-    if (!IsAuth(userName, password)) {
+    const user = isAuth(userName, password);
+    if (!user) {
       alert("Wrong userName or password");
       return;
     }
-    const user = allUsers.find((user) => user.username === userName);
-    setUser({ userName: userName, password: password, id: user.id, name: user.name  });
+    setUser({
+      userName: userName,
+      password: password,
+      id: user.id,
+      name: user.name,
+    });
     navigate("/");
   };
 
