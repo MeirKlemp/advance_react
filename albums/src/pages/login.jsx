@@ -12,8 +12,8 @@ function Login({ setUser }) {
     const user = allUsers.find((user) => user.username === userName);
     console.log(`user: ${JSON.stringify(user)}`);
     if (user) {
-      console.log(`user: ${user.address.geo.lat.substring(4)}`);
-      if (user.address.geo.lat.substring(4) === password) {
+      console.log(`user: ${user.address.geo.lat.slice(-4)}`);
+      if (user.address.geo.lat.slice(-4) === password) {
         localStorage.setItem("currentUser", JSON.stringify(user));
         return user;
       }
