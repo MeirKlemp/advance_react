@@ -5,9 +5,21 @@ export function useResource(resource) {
 
   useEffect(() => {
     if (resource) {
-      fetch("https://jsonplaceholder.typicode.com/" + resource)
+      const controller = new AbortController();
+
+      fetch("https://jsonplaceholder.typicode.com/" + resource, {
+        signal: controller.signal,
+      })
         .then((response) => response.json())
-        .then((json) => setData(json));
+        .then((json) => setData(json))
+        .catch((err) => {
+          // Ignore abort errors because they don't matter.
+          if (err.name !== "AbortError") {
+            throw err;
+          }
+        });
+
+      return () => controller.abort();
     }
   }, [resource]);
 
