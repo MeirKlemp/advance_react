@@ -8,6 +8,7 @@ import Posts from "./pages/posts";
 import Todos from "./pages/todos";
 import Error from "./pages/error";
 import PostDetail from "./pages/postDetail";
+import Photos from "./pages/photos";
 import Layout from "./components/Layout";
 import Logout from "./pages/logout";
 import Protected from "./pages/protectedRout";
@@ -53,6 +54,14 @@ function App() {
               element={
                 <Protected>
                   <PostDetail />
+                </Protected>
+              }
+            />
+            <Route
+              path="/albums/:albumId"
+              element={
+                <Protected>
+                  <Photos />
                 </Protected>
               }
             />
