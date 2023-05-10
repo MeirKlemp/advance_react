@@ -122,3 +122,98 @@ footer {
   padding: 24px;
   margin: 30px 26px;
 }
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #222;
+  color: #fff;
+  padding: 50px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.data {
+  background-color: #444;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.1);
+  padding: 30px;
+}
+
+.data p {
+  margin: 15px 0;
+}
+
+.data p span {
+  font-weight: bold;
+}
+
+.address ul,
+.company ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0;
+}
+
+.address li span,
+.company li span {
+  font-weight: bold;
+}
+
+.address ul ul,
+.company ul ul {
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.address ul ul li,
+.company ul ul li {
+  margin: 5px 0;
+}
+
+.address p {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.address ul {
+  margin-top: 10px;
+}
+
+.company p {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.company ul {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
+  
+  .data {
+    padding: 20px;
+  }
+  
+  .data p {
+    margin: 10px 0;
+  }
+  
+  .address p,
+  .company p {
+    margin-top: 10px;
+  }
+}

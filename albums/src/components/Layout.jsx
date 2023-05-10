@@ -12,8 +12,23 @@ export default function Layout() {
     <>
       <div style={{ display: "flex", alignItems: "center" }}>
         <Header style={{ display: "inline-block" }} />
-        <h2 style={{ display: "inline-block", marginLeft: "10px" }}>
-          {`hello ${user.name} welcome! your id is ${user.id}`}
+        <h2
+          style={{
+            display: "inline-block",
+            marginLeft: "10px",
+            color: "#333",
+            fontFamily: "Open Sans, sans-serif",
+            fontWeight: "bold",
+            fontSize: "2em",
+            backgroundColor: "#f7f7f7",
+            padding: "0.5em 1em",
+            border: "2px solid #ccc",
+            borderRadius: "10px",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            lineHeight: "1.2",
+          }}
+        >
+          {`Welcome ${user.name}, your ID is ${user.id}`}
         </h2>
       </div>
       <Outlet />
