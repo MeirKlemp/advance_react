@@ -21,13 +21,11 @@ export default function Photos() {
     return <h1>Loading...</h1>;
   }
 
-  //   https://stackoverflow.com/questions/45585542/detecting-when-user-scrolls-to-bottom-of-div-with-react-js
   const onScroll = () => {
     if (listInnerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
       if (scrollTop + clientHeight > scrollHeight - 15) {
         setMaxPhoto(maxPhoto + 5);
-        // console.log("Reached bottom");
       }
     }
   };
@@ -52,25 +50,4 @@ export default function Photos() {
       </div>
     </section>
   );
-  //   return (
-  //     <section>
-  //       <Link to=".." relative="path" className="back-button">
-  //         &larr; <span>Back to all albums</span>
-  //       </Link>
-
-  //       <h1>Album</h1>
-  //       <div className="post-detail-layout-container">
-  //         <h2>{currentAlbum.title}</h2>
-  //       </div>
-  //       <h2 className="bubbles-title">photos</h2>
-  //       <div
-  //         className="bubbles-list"
-  //         ref={listInnerRef}
-  //         onScroll={onScroll}
-  //         style={{ height: "400px", overflow: "auto" }}
-  //       >
-  //         {photosEls}
-  //       </div>
-  //     </section>
-  //   );
 }

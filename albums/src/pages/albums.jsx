@@ -4,10 +4,8 @@ import { useResource } from "../api";
 import { UserContext } from "../App";
 
 export default function Albums() {
-
   const { user } = useContext(UserContext);
   const [albums, setAlbums] = useResource("albums?userId=" + user.id);
-  const [openedAlbum, setOpenedAlbum] = useState(NaN);
 
   const albumEls = albums?.map((album) => (
     <Album key={album.id} album={album} />
