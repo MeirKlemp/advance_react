@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import usePState from "../persist";
 import { Link, useLoaderData } from "react-router-dom";
 import { useResource } from "../api";
 import { UserContext } from "../App";
@@ -6,7 +7,7 @@ import { UserContext } from "../App";
 export default function Posts() {
   const { user } = useContext(UserContext);
   const [posts, setPosts] = useResource("posts?userId=" + user.id);
-  const [openedPost, setOpenedPost] = useState(NaN);
+  const [openedPost, setOpenedPost] = usePState(NaN, "openedPost");
 
   const postEls = posts?.map((post) => (
     <Post

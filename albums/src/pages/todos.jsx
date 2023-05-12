@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import usePState from "../persist";
 import { Link } from "react-router-dom";
 import { useResource, updateResource } from "../api";
 import { UserContext } from "../App";
@@ -6,13 +7,12 @@ import { UserContext } from "../App";
 export default function Todos() {
   const { user } = useContext(UserContext);
   const [todos, setTodos] = useResource("todos?userId=" + user.id);
-  const [order, setOrder] = useState(0);
+  const [order, setOrder] = usePState(0, "order");
+  const [oTodos, setOTodos] = useState(null);
 
-  const handleOrderChange = (e) => {
-    const order = e.target.value;
-    setOrder(order);
-    setTodos((todos) => todos?.toSorted(Orders[order].compare));
-  };
+  useEffect(() => {
+    setOTodos(todos?.toSorted(Orders[order].compare));
+  }, [order, todos]);
 
   const handleTodoChange = (todo) => {
     updateResource("todos/" + todo.id, todo);
@@ -31,7 +31,7 @@ export default function Todos() {
     </option>
   ));
 
-  const todoEls = todos?.map((todo) => (
+  const todoEls = oTodos?.map((todo) => (
     <React.Fragment key={todo.id}>
       <Todo todo={todo} onChange={handleTodoChange} />
       <br />
@@ -43,7 +43,7 @@ export default function Todos() {
       <h1>Todos</h1>
       <div>
         <span>Order: </span>
-        <select value={order} onChange={handleOrderChange}>
+        <select value={order} onChange={(e) => setOrder(e.target.value)}>
           {orderEls}
         </select>
       </div>

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import usePState from "../persist";
 import { useParams, Link } from "react-router-dom";
 import { useResource } from "../api";
 
@@ -7,7 +8,7 @@ export default function Photos() {
   const [currentAlbum] = useResource("albums/" + albumId);
   const [photos] = useResource("photos?albumId=" + albumId);
   const listInnerRef = useRef();
-  const [maxPhoto, setMaxPhoto] = useState(5);
+  const [maxPhoto, setMaxPhoto] = usePState(5, "maxPhoto-" + albumId);
 
   const photosEls = photos?.slice(0, maxPhoto).map((photo) => (
     <div className="bubble-info photo-detail" key={photo.id}>
@@ -24,7 +25,7 @@ export default function Photos() {
   const onScroll = () => {
     if (listInnerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
-      if (scrollTop + clientHeight > (scrollHeight - 15)) {
+      if (scrollTop + clientHeight > scrollHeight - 15) {
         setMaxPhoto(maxPhoto + 5);
         // console.log("Reached bottom");
       }
