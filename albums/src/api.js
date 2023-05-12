@@ -7,10 +7,7 @@ export function useResource(resource) {
     if (resource) {
       const controller = new AbortController();
 
-      fetch("https://jsonplaceholder.typicode.com/" + resource, {
-        signal: controller.signal,
-      })
-        .then((response) => response.json())
+      getCached(resource, controller.signal)
         .then((json) => setData(json))
         .catch((err) => {
           // Ignore abort errors because they don't matter.
@@ -22,6 +19,14 @@ export function useResource(resource) {
       return () => controller.abort();
     }
   }, [resource]);
+
+  // For proxy.
+  /*useEffect(() => {
+    if (data) {
+      console.log(resource, data);
+      window.localStorage.setItem(resource, JSON.stringify(data));
+    }
+  }, [data, resource]);*/
 
   return [data, setData];
 }
@@ -39,4 +44,21 @@ export async function updateResource(resource, updatedObj) {
   );
 
   return await response.json();
+}
+
+async function getCached(resource, signal) {
+  const cached = window.localStorage.getItem(resource);
+  if (cached) {
+    return JSON.parse(cached);
+  } else {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/" + resource,
+      {
+        signal: signal,
+      }
+    );
+    const text = await response.text();
+    window.localStorage.setItem(resource, text);
+    return JSON.parse(text);
+  }
 }
