@@ -1,6 +1,11 @@
-import { useState, createContext } from "react";
-import usePState from "./persist";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useState, useEffect, createContext } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import Albums from "./pages/albums";
 import Home from "./pages/home";
 import Info from "./pages/info";
@@ -17,7 +22,15 @@ import Protected from "./pages/protectedRout";
 export const UserContext = createContext();
 
 function App() {
-  const [user, setUser] = usePState(NaN, "user");
+  const [user, setUser] = useState(() => {
+    const saved = window.localStorage.getItem("currentUser");
+    return JSON.parse(saved) || null;
+  });
+
+  // TODO: Think about it.
+  useEffect(() => {
+    window.localStorage.setItem("currentUser", JSON.stringify(user));
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

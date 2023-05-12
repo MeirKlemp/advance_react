@@ -1,24 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../App";
 
 export default function Info() {
-  let userData = localStorage.getItem("currentUser");
-  userData = JSON.parse(userData);
+  const { user } = useContext(UserContext);
 
   return (
     <div className="container">
       <h1>User Data</h1>
       <div className="data">
         <p>
-          <span>ID:</span> {userData.id}
+          <span>ID:</span> {user.id}
         </p>
         <p>
-          <span>Name:</span> {userData.name}
+          <span>Name:</span> {user.name}
         </p>
         <p>
-          <span>Username:</span> {userData.username}
+          <span>Username:</span> {user.username}
         </p>
         <p>
-          <span>Email:</span> {userData.email}
+          <span>Email:</span> {user.email}
         </p>
         <div className="address">
           <p>
@@ -26,35 +26,35 @@ export default function Info() {
           </p>
           <ul>
             <li>
-              <span>Street:</span> {userData.address.street}
+              <span>Street:</span> {user.address.street}
             </li>
             <li>
-              <span>Suite:</span> {userData.address.suite}
+              <span>Suite:</span> {user.address.suite}
             </li>
             <li>
-              <span>City:</span> {userData.address.city}
+              <span>City:</span> {user.address.city}
             </li>
             <li>
-              <span>Zipcode:</span> {userData.address.zipcode}
+              <span>Zipcode:</span> {user.address.zipcode}
             </li>
             <li>
               <span>Geo:</span>
             </li>
             <ul>
               <li>
-                <span>Lat:</span> {userData.address.geo.lat}
+                <span>Lat:</span> {user.address.geo.lat}
               </li>
               <li>
-                <span>Lng:</span> {userData.address.geo.lng}
+                <span>Lng:</span> {user.address.geo.lng}
               </li>
             </ul>
           </ul>
         </div>
         <p>
-          <span>Phone:</span> {userData.phone}
+          <span>Phone:</span> {user.phone}
         </p>
         <p>
-          <span>Website:</span> {userData.website}
+          <span>Website:</span> {user.website}
         </p>
         <div className="company">
           <p>
@@ -62,13 +62,13 @@ export default function Info() {
           </p>
           <ul>
             <li>
-              <span>Name:</span> {userData.company.name}
+              <span>Name:</span> {user.company.name}
             </li>
             <li>
-              <span>Catch Phrase:</span> {userData.company.catchPhrase}
+              <span>Catch Phrase:</span> {user.company.catchPhrase}
             </li>
             <li>
-              <span>BS:</span> {userData.company.bs}
+              <span>BS:</span> {user.company.bs}
             </li>
           </ul>
         </div>

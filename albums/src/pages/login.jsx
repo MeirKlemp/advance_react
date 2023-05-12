@@ -14,7 +14,6 @@ function Login({ setUser }) {
     if (user) {
       console.log(`user: ${user.address.geo.lat.slice(-4)}`);
       if (user.address.geo.lat.slice(-4) === password) {
-        localStorage.setItem("currentUser", JSON.stringify(user));
         return user;
       }
     }
@@ -29,12 +28,7 @@ function Login({ setUser }) {
       alert("Wrong userName or password");
       return;
     }
-    setUser({
-      userName: userName,
-      password: password,
-      id: user.id,
-      name: user.name,
-    });
+    setUser(user);
     navigate("/");
   };
 
