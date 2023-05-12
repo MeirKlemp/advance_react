@@ -1,13 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import { useResource } from "../api";
+import { UserContext } from "../App";
 
 export default function Albums() {
-  const [albums, setAlbums] = useResource("albums");
+
+  const { user } = useContext(UserContext);
+  const [albums, setAlbums] = useResource("albums?userId=" + user.id);
+  const [openedAlbum, setOpenedAlbum] = useState(NaN);
+
+  const albumEls = albums?.map((album) => (
+    <Album key={album.id} album={album} />
+  ));
+
   return (
-    <div>
-      <h1>Albums</h1>
-      {albums && albums.map((album) => <h2 key={album.id}>{album.title}</h2>)}
+    <section>
+      <h1 className="bubbles-title">Your albums</h1>
+      <div className="bubbles-list">
+        {albums !== null ? <section>{albumEls}</section> : <h2>Loading...</h2>}
+      </div>
+    </section>
+  );
+}
+
+function Album(album) {
+  return (
+    <div className="bubble-info">
+      <h3>{album.album.title}</h3>
+      <Link to={`/albums/${album.album.id}`}>Show photos</Link>
     </div>
   );
 }

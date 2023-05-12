@@ -19,7 +19,7 @@ export default function Layout() {
             color: "#333",
             fontFamily: "Open Sans, sans-serif",
             fontWeight: "bold",
-            fontSize: "2em",
+            fontSize: "1.5em",
             backgroundColor: "#f7f7f7",
             padding: "0.5em 1em",
             border: "2px solid #ccc",
