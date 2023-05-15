@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import usePState from "../persist";
-import { Link } from "react-router-dom";
 import { useResource, updateResource } from "../api";
 import { UserContext } from "../App";
 
@@ -25,6 +24,24 @@ export default function Todos() {
     setTodos(updatedTodos);
   };
 
+  const handleTodoRemove = (todo) => {
+    const updatedTodos = todos.filter((t) => t.id !== todo.id);
+    setTodos(updatedTodos);
+  }
+
+  const handleNewTodo = () => {
+    const title = prompt("Please enter your todo");
+    if (title) {
+      const newTodo = {
+        userId: user.id,
+        id: Math.floor(Math.random() * 2000000 - 1),
+        title,
+        completed: false,
+      };
+      setTodos([...todos, newTodo]);
+    }
+  };
+
   const orderEls = Orders.map((o, i) => (
     <option key={i} value={i}>
       {o.title}
@@ -33,7 +50,7 @@ export default function Todos() {
 
   const todoEls = oTodos?.map((todo) => (
     <React.Fragment key={todo.id}>
-      <Todo todo={todo} onChange={handleTodoChange} />
+      <Todo todo={todo} onChange={handleTodoChange} onRemove={handleTodoRemove} />
       <br />
     </React.Fragment>
   ));
@@ -46,22 +63,26 @@ export default function Todos() {
         <select value={order} onChange={(e) => setOrder(e.target.value)}>
           {orderEls}
         </select>
+        <button onClick={() => handleNewTodo()}>+</button>
       </div>
       <div>{todoEls}</div>
     </div>
   );
 }
 
-function Todo({ todo, onChange }) {
+function Todo({ todo, onChange, onRemove }) {
   return (
-    <label>
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={(e) => onChange?.({ ...todo, completed: e.target.checked })}
-      />
-      <span>{todo.title}</span>
-    </label>
+    <div>
+      <label>
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={(e) => onChange?.({ ...todo, completed: e.target.checked })}
+        />
+        <span>{todo.title}</span>
+      </label>
+      <button onClick={() => onRemove?.(todo)}>X</button>
+    </div>
   );
 }
 
