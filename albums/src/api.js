@@ -20,13 +20,11 @@ export function useResource(resource) {
     }
   }, [resource]);
 
-  // For proxy.
-  /*useEffect(() => {
-    if (data) {
-      console.log(resource, data);
+  useEffect(() => {
+    if (data && resource) {
       window.localStorage.setItem(resource, JSON.stringify(data));
     }
-  }, [data, resource]);*/
+  }, [data, resource]);
 
   return [data, setData];
 }
