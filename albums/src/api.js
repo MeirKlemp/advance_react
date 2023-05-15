@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export function useResource(resource) {
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (resource) {
@@ -12,7 +13,7 @@ export function useResource(resource) {
         .catch((err) => {
           // Ignore abort errors because they don't matter.
           if (err.name !== "AbortError") {
-            throw err;
+            setError(err);
           }
         });
 
@@ -25,6 +26,10 @@ export function useResource(resource) {
       window.localStorage.setItem(resource, JSON.stringify(data));
     }
   }, [data, resource]);
+
+  if (error) {
+    throw error;
+  }
 
   return [data, setData];
 }

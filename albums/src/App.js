@@ -7,6 +7,7 @@ import Login from "./pages/login";
 import Posts from "./pages/posts";
 import Todos from "./pages/todos";
 import Error from "./pages/error";
+import ErrorBoundry from "./pages/errorBoundry";
 import PostDetail from "./pages/postDetail";
 import Photos from "./pages/photos";
 import Layout from "./components/Layout";
@@ -34,69 +35,71 @@ function App() {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route element={<Layout />}>
-            <Route path="/" element={!user && <Navigate to="/login" />} />
-            <Route
-              path="/albums"
-              element={
-                <Protected>
-                  <Albums />
-                </Protected>
-              }
-            />
-            <Route
-              path="/info"
-              element={
-                <Protected>
-                  <Info />
-                </Protected>
-              }
-            />
-            <Route
-              path="/posts"
-              element={
-                <Protected>
-                  <Posts />
-                </Protected>
-              }
-            />
-            <Route
-              path="/posts/:postId"
-              element={
-                <Protected>
-                  <PostDetail />
-                </Protected>
-              }
-            />
-            <Route
-              path="/albums/:albumId"
-              element={
-                <Protected>
-                  <Photos />
-                </Protected>
-              }
-            />
-            <Route
-              path="/logout"
-              element={<Logout onLogout={handleLogout} />}
-            />
-            <Route path="*" element={<Error />} />
-            <Route
-              path="/todos"
-              element={
-                <Protected>
-                  <Todos />
-                </Protected>
-              }
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </UserContext.Provider>
+    <ErrorBoundry>
+      <UserContext.Provider value={{ user, setUser }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+            <Route element={<Layout />}>
+              <Route path="/" element={!user && <Navigate to="/login" />} />
+              <Route
+                path="/albums"
+                element={
+                  <Protected>
+                    <Albums />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/info"
+                element={
+                  <Protected>
+                    <Info />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/posts"
+                element={
+                  <Protected>
+                    <Posts />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/posts/:postId"
+                element={
+                  <Protected>
+                    <PostDetail />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/albums/:albumId"
+                element={
+                  <Protected>
+                    <Photos />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/logout"
+                element={<Logout onLogout={handleLogout} />}
+              />
+              <Route path="*" element={<Error />} />
+              <Route
+                path="/todos"
+                element={
+                  <Protected>
+                    <Todos />
+                  </Protected>
+                }
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </UserContext.Provider>
+    </ErrorBoundry>
   );
 }
 
