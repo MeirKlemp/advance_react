@@ -60,9 +60,9 @@ export default function Todos() {
   ));
 
   return (
-    <div>
+    <div className="container">
       <h1>Todos</h1>
-      <div>
+      <div className="data">
         <span>Order: </span>
         <select value={order} onChange={(e) => setOrder(e.target.value)}>
           {orderEls}
@@ -71,7 +71,7 @@ export default function Todos() {
           +
         </button>
       </div>
-      <div>{todoEls}</div>
+      <div className="data">{todoEls}</div>
     </div>
   );
 }

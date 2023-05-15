@@ -128,7 +128,7 @@ h5 {
 
 /* posts component */
 .bubble-info {
-  background-color: white;
+  background-color: rgb(63, 56, 56);
   margin-bottom: 15px;
   padding-block: 18px;
   padding-left: 24px;
@@ -138,6 +138,12 @@ h5 {
   font-size: 20px;
   font-weight: 600;
   margin-block: 10px;
+}
+.link{
+  color: #ff8c73;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 5px 20px;
 }
 
 .bubble-info p {
@@ -155,7 +161,7 @@ h5 {
 /* post detail component */
 .back-button {
   display: block;
-  color: black;
+  color: rgb(207, 46, 46);
   text-decoration: none;
   margin-top: 60px;
   margin-left: 26px;
@@ -200,6 +206,10 @@ h1 {
 
 .data p span {
   font-weight: bold;
+}
+
+.data h3{
+  color: #150a0a;
 }
 
 .address ul,

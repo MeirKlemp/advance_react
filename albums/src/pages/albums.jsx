@@ -12,10 +12,10 @@ export default function Albums() {
   ));
 
   return (
-    <section>
+    <section className="container">
       <h1 className="bubbles-title">Your albums</h1>
-      <div className="bubbles-list">
-        {albums !== null ? <section>{albumEls}</section> : <h2>Loading...</h2>}
+      <div className="bubbles-list ">
+        {albums !== null ? <section className="data">{albumEls}</section> : <h2>Loading...</h2>}
       </div>
     </section>
   );
@@ -25,7 +25,7 @@ function Album(album) {
   return (
     <div className="bubble-info">
       <h3>{album.album.title}</h3>
-      <Link to={`/albums/${album.album.id}`}>Show photos</Link>
+      <Link className="link" to={`/albums/${album.album.id}`}>Show photos</Link>
     </div>
   );
 }

@@ -21,9 +21,9 @@ export default function Posts() {
   ));
 
   return (
-    <section>
+    <section className="container">
       <h1 className="bubbles-title">Your posts</h1>
-      <div className="bubbles-list">
+      <div className="bubbles-list data">
         {posts !== null ? <section>{postEls}</section> : <h2>Loading...</h2>}
       </div>
     </section>
@@ -39,7 +39,7 @@ function Post({ post, isOpened, onOpenToggled }) {
       ) : (
         <>
           <p>{post.body}</p>
-          <Link to={`/posts/${post.id}`}>Show comments</Link>
+          <Link className="link" to={`/posts/${post.id}`}>Show comments</Link>
         </>
       )}
     </div>
