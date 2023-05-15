@@ -1,8 +1,7 @@
 import { Navigate } from "react-router-dom";
 
-const Logout = ({ setUser }) => {
-  debugger;
-  setUser(null);
+const Logout = ({ onLogout }) => {
+  onLogout?.();
   return <Navigate to="/login" replace />;
 };
 export default Logout;

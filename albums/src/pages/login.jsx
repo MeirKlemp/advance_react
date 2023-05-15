@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useResource } from "../api";
 
-function Login({ setUser }) {
+function Login({ onLogin }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [allUsers] = useResource("users");
@@ -28,7 +28,7 @@ function Login({ setUser }) {
       alert("Wrong userName or password");
       return;
     }
-    setUser(user);
+    onLogin?.(user);
     navigate("/");
   };
 

@@ -1,11 +1,5 @@
-import { useState, useEffect, createContext } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+import { useState, createContext } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Albums from "./pages/albums";
 import Home from "./pages/home";
 import Info from "./pages/info";
@@ -21,22 +15,29 @@ import Protected from "./pages/protectedRout";
 
 export const UserContext = createContext();
 
+const CURRENT_USER_LS = "currentUser";
+
 function App() {
   const [user, setUser] = useState(() => {
-    const saved = window.localStorage.getItem("currentUser");
+    const saved = window.localStorage.getItem(CURRENT_USER_LS);
     return JSON.parse(saved) || null;
   });
 
-  // TODO: Think about it.
-  useEffect(() => {
-    window.localStorage.setItem("currentUser", JSON.stringify(user));
-  }, [user]);
+  const handleLogin = (user) => {
+    setUser(user);
+    window.localStorage.setItem(CURRENT_USER_LS, JSON.stringify(user));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    window.localStorage.removeItem(CURRENT_USER_LS);
+  };
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route element={<Layout />}>
             <Route path="/" element={!user && <Navigate to="/login" />} />
             <Route
@@ -79,7 +80,10 @@ function App() {
                 </Protected>
               }
             />
-            <Route path="/logout" element={<Logout setUser={setUser} />} />
+            <Route
+              path="/logout"
+              element={<Logout onLogout={handleLogout} />}
+            />
             <Route path="*" element={<Error />} />
             <Route
               path="/todos"
