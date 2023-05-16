@@ -33,7 +33,7 @@ function Login({ onLogin }) {
   };
 
   return (
-    <section className="section">
+    <section className="section container">
       <form className="form" onSubmit={handleSubmit}>
         <h5>login</h5>
         <div className="form-row">
