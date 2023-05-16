@@ -23,13 +23,13 @@ export default function PostDetail() {
     return <h1>Loading...</h1>;
   }
   return (
-    <section>
-      <Link to=".." relative="path" className="back-button">
+    <section className="container">
+      <Link to=".." relative="path" className=" back-button ">
         &larr; <span>Back to all posts</span>
       </Link>
 
       <h1 className="bubbles-title">Post</h1>
-      <div className="post-detail-layout-container">
+      <div className="post-detail-layout-container data">
         <h2>{currentPost.title}</h2>
         <p>{currentPost.body}</p>
       </div>

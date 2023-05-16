@@ -35,13 +35,17 @@ function App() {
   };
 
   return (
+
     <ErrorBoundry>
       <UserContext.Provider value={{ user, setUser }}>
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route element={<Layout />}>
-              <Route path="/" element={!user && <Navigate to="/login" />} />
+              <Route
+                path="/"
+                element={user ? <Home /> : <Navigate to="/login" />}
+              />
               <Route
                 path="/albums"
                 element={

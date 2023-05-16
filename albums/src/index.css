@@ -23,7 +23,6 @@ header {
 }
 
 header .site-logo {
-  color: black;
   margin-right: auto;
   text-transform: uppercase;
   font-weight: 900;
@@ -31,20 +30,27 @@ header .site-logo {
 }
 
 header a {
+  color: #f3f3f3;
   text-decoration: none;
-  color: #4d4d4d;
   font-weight: 600;
   padding: 5px 20px;
 }
 
 header a:hover {
-  color: #161616;
+  color: rgb(207, 46, 46);
   text-decoration: underline;
   font-weight: bold;
 }
 
+.header-container {
+  background-color: #444;
+  color: #f3f3f3;
+  display: flex;
+  align-items: center;
+}
+
 .activeStyle {
-  color: #161616;
+  color: rgb(207, 46, 46);
   text-decoration: underline;
   font-weight: bolder;
 }
@@ -66,6 +72,10 @@ header a:hover {
   transform: translate(1px, 1px);
 }
 
+html {
+  background-color: #161616;
+}
+
 footer {
   background-color: #161616;
   color: #aaaaaa;
@@ -78,9 +88,58 @@ footer {
   font-weight: 500;
 }
 
+/* login component */
+
+.section {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #181818;
+  color: #f3f3f3;
+}
+
+.btn {
+  background-color: rgb(207, 46, 46);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Additional styling for the login header */
+h5 {
+  text-align: center;
+  margin-top: 0;
+}
+
 /* posts component */
 .bubble-info {
-  background-color: white;
+  background-color: rgb(63, 56, 56);
   margin-bottom: 15px;
   padding-block: 18px;
   padding-left: 24px;
@@ -90,6 +149,12 @@ footer {
   font-size: 20px;
   font-weight: 600;
   margin-block: 10px;
+}
+.link {
+  color: #ff8c73;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 5px 20px;
 }
 
 .bubble-info p {
@@ -107,7 +172,7 @@ footer {
 /* post detail component */
 .back-button {
   display: block;
-  color: black;
+  color: rgb(207, 46, 46);
   text-decoration: none;
   margin-top: 60px;
   margin-left: 26px;
@@ -118,18 +183,19 @@ footer {
 }
 
 .post-detail-layout-container {
-  background-color: white;
   padding: 24px;
   margin: 30px 26px;
 }
 .container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #222;
   color: #fff;
   padding: 50px;
 }
 
 h1 {
+  background-color: #222;
+  color: #f3f3f3;
   font-size: 48px;
   font-weight: bold;
   margin-top: 0;
@@ -137,6 +203,10 @@ h1 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+.error-msg {
+  text-align: center;
 }
 
 .data {
@@ -152,6 +222,10 @@ h1 {
 
 .data p span {
   font-weight: bold;
+}
+
+.data h3 {
+  color: #f3f3f3;
 }
 
 .address ul,
@@ -195,12 +269,67 @@ h1 {
   margin-top: 10px;
 }
 
+/* todos component */
+.removeBtn {
+  background: linear-gradient(to bottom, #ff80c0, #e02929);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.removeBtn:hover {
+  background-color: #ff654d;
+  transform: scale(1.05);
+}
+
+.removeBtn:active {
+  background-color: #ff80c0;
+  transform: scale(0.95);
+}
+.addButton {
+  background-color: #ff80c0;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(255, 0, 128, 0.2);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.addButton:hover {
+  background-color: #ff1493;
+}
+
+.addButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 0, 128, 0.4);
+}
+
+.addButton:active {
+  transform: translateY(1px);
+}
+
 /* photos component */
 
-.photo-detail{
+.photo-detail {
   display: flex;
   align-items: center;
-  background-color: white;
   padding: 24px;
   margin: 30px 26px;
 }
@@ -218,24 +347,23 @@ h1 {
   font-weight: 700;
 }
 
-
 @media only screen and (max-width: 768px) {
   .container {
     padding: 20px;
   }
-  
+
   h1 {
     font-size: 36px;
   }
-  
+
   .data {
     padding: 20px;
   }
-  
+
   .data p {
     margin: 10px 0;
   }
-  
+
   .address p,
   .company p {
     margin-top: 10px;

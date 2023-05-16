@@ -6,9 +6,9 @@ export default function Error() {
   const { user } = useContext(UserContext);
   const message = user ? "You are logged in" : "You are not logged in";
   return (
-    <div>
+    <div className="container">
       <h1>Error</h1>
-      <p>{message}</p>
+      <p className="error-msg">{message}</p>
     </div>
   );
 }
