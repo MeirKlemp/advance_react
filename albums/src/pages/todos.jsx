@@ -27,7 +27,7 @@ export default function Todos() {
   const handleTodoRemove = (todo) => {
     const updatedTodos = todos.filter((t) => t.id !== todo.id);
     setTodos(updatedTodos);
-  }
+  };
 
   const handleNewTodo = () => {
     const title = prompt("Please enter your todo");
@@ -50,22 +50,28 @@ export default function Todos() {
 
   const todoEls = oTodos?.map((todo) => (
     <React.Fragment key={todo.id}>
-      <Todo todo={todo} onChange={handleTodoChange} onRemove={handleTodoRemove} />
+      <Todo
+        todo={todo}
+        onChange={handleTodoChange}
+        onRemove={handleTodoRemove}
+      />
       <br />
     </React.Fragment>
   ));
 
   return (
-    <div>
+    <div className="container">
       <h1>Todos</h1>
-      <div>
+      <div className="data">
         <span>Order: </span>
         <select value={order} onChange={(e) => setOrder(e.target.value)}>
           {orderEls}
         </select>
-        <button onClick={() => handleNewTodo()}>+</button>
+        <button className="addButton" onClick={() => handleNewTodo()}>
+          +
+        </button>
       </div>
-      <div>{todoEls}</div>
+      <div className="data">{todoEls}</div>
     </div>
   );
 }
@@ -81,7 +87,9 @@ function Todo({ todo, onChange, onRemove }) {
         />
         <span>{todo.title}</span>
       </label>
-      <button onClick={() => onRemove?.(todo)}>X</button>
+      <button className="removeBtn" onClick={() => onRemove?.(todo)}>
+        X
+      </button>
     </div>
   );
 }

@@ -30,18 +30,18 @@ export default function Photos() {
     }
   };
   return (
-    <section>
+    <section className="container">
       <Link to=".." relative="path" className="back-button">
         &larr; <span>Back to all albums</span>
       </Link>
 
       <h1>Album</h1>
-      <div className="post-detail-layout-container">
+      <div className="post-detail-layout-container data">
         <h2>{currentAlbum.title}</h2>
       </div>
       <h2 className="bubbles-title">photos</h2>
       <div
-        className="bubbles-list"
+        className="data bubbles-list"
         ref={listInnerRef}
         onScroll={onScroll}
         style={{ height: "400px", overflow: "auto" }}

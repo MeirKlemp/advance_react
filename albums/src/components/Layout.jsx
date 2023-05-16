@@ -10,7 +10,7 @@ export default function Layout() {
 
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div className="header-container">
         <Header style={{ display: "inline-block" }} />
         {user && (
           <h2
